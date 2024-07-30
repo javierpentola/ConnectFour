@@ -15,6 +15,7 @@ export class Navigation {
     setupEventListeners() {
         $('.btn-pvc').addEventListener('click', this.startGameCPU.bind(this));
         $('.btn-pvp').addEventListener('click', this.startGame.bind(this));
+        $('.btn-timed').addEventListener('click', this.startTimedGame.bind(this));
         $('.btn-rules').addEventListener('click', this.showRules.bind(this));
         $('.btn-ok-rules').addEventListener('click', this.hideRules.bind(this));
         $('.btn-menu').addEventListener('click', this.pauseGame.bind(this));
@@ -61,6 +62,17 @@ export class Navigation {
         this.data.state = 'start';
         this.data.pvc = true;
         this.game.isAgainstCPU = true;
+
+        this.fadeOut();
+    }
+
+    async startTimedGame() {
+        await this.fadeIn();
+
+        this.data.ingame = true;
+        this.data.state = 'start';
+        this.data.timed = true;
+        this.game.isTimed = true;
 
         this.fadeOut();
     }
